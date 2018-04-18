@@ -29,7 +29,14 @@ App = React.createClass({
           });
         }.bind(this));
     },
-
+    /*
+1.Na wejście metody getGif przyjmujemy dwa parametry: wpisywany tekst (searchingText) i funkcję, która ma się wykonać po pobraniu gifa (callback)
+2.Konstruujemy adres URL dla API Giphy (pełną dokumentację znajdziesz pod tym adresem)
+3.Wywołujemy całą sekwencję tworzenia zapytania XHR do serwera i wysyłamy je.
+4.W obiekcie odpowiedzi mamy obiekt z danymi. W tym miejscu rozpakowujemy je sobie do zmiennej data, aby nie pisać za każdym razem response.data.
+5.Układamy obiekt gif na podstawie tego co otrzymaliśmy z serwera
+6.Przekazujemy obiekt do funkcji callback, którą przekazaliśmy jako drugi parametr metody getGif.  
+*/
     getGif: function(searchingText, callback) {  // 1.
         var url = GIPHY_API_URL + '/v1/gifs/random?api_key=' + GIPHY_PUB_KEY + '&tag=' + searchingText;  // 2.
         var xhr = new XMLHttpRequest();  // 3.
